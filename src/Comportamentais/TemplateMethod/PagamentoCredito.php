@@ -2,17 +2,8 @@
 
 namespace DesignPatterns\Comportamentais\TemplateMethod;
 
-class PagamentoCredito
+class PagamentoCredito extends Pagamento
 {
-    private float $valor;
-    private Gateway $gateway;
-
-    public function __construct($valor, Gateway $gateway)
-    {
-        $this->valor = $valor;
-        $this->gateway = $gateway;
-    }
-
     //Calcula a taxa do Gateway.
     public function calcularTaxa(): float
     {
@@ -30,15 +21,5 @@ class PagamentoCredito
         }
         //Pagamentos de valores menores que 300 reais não possuem desconto.
         return 0;
-    }
-
-    //Realiza a cobrança.
-    public function realizaCobranca(): bool
-    {
-        //Calcula o valor total (Valor do pagamento + taxa - desconto).
-        $valorFinal = $this->valor + $this->calcularTaxa() - $this->calcularDesconto();
-
-        //Delega a cobrança para o Gateway.
-        return $this->gateway->cobrar($valorFinal);
     }
 }
