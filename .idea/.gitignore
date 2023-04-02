@@ -1,2 +1,4 @@
 # Default ignored files
 /workspace.xml
+.docker/nginx/logs/error.log
+.docker/nginx/logs/access.log
